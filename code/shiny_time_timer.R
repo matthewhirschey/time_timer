@@ -44,7 +44,9 @@ server <- function(input, output, session) {
   
   #the reactive text that generates my HTML
   output$simple_timer <- renderText({
-    glue::glue('<img src ="{rv$time}_sec.gif", 
+    input$go # make code dependent on the button
+    # add `?timestamp=<timestamp>`to the src URL to convince the browser to reload the pic
+    glue::glue('<img src ="https://github.com/matthewhirschey/time_timer/raw/main/data/{rv$time}_sec.gif?timestamp={Sys.time()}", 
             align = "center", 
             height="50%", 
             width="50%">')
